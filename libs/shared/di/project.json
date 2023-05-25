@@ -1,0 +1,38 @@
+{
+  "name": "shared-di",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/di/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/di",
+        "main": "libs/shared/di/src/index.ts",
+        "tsConfig": "libs/shared/di/tsconfig.lib.json",
+        "assets": ["libs/shared/di/*.md"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs shared-di {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/di/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/libs/shared/di"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/libs/shared/di"
+      }
+    }
+  },
+  "tags": []
+}
