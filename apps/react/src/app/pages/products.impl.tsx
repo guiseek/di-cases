@@ -35,6 +35,7 @@ export function ProductsImpl(http: Http) {
 
     return (
       <div>
+        <h1>Products</h1>
         This is the generated root route.{' '}
         <Link to="/">Click here for Home.</Link>
         <ul>

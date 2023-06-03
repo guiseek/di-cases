@@ -3,6 +3,7 @@ import { ProductsImpl } from './pages/products.impl';
 import { RouterImpl } from './pages/router.impl';
 import { HomeImpl } from './pages/home.impl';
 import { register } from '@sqnl/di';
+import { RoutePath } from './types';
 
 export function Home() {
   return <></>;
@@ -21,17 +22,21 @@ register(
   },
   {
     for: Home,
-    use: () => HomeImpl(),
+    use: () => {
+      return ['/', HomeImpl()];
+    },
   },
   {
     for: Products,
-    use: (http: Http) => ProductsImpl(http),
+    use: (http: Http) => {
+      return ['/products', ProductsImpl(http)];
+    },
     add: [Http],
   },
   {
     for: Router,
-    use: (home: typeof Home, products: typeof Products) => {
-      return RouterImpl(home, products);
+    use: (...routes: RoutePath[]) => {
+      return RouterImpl(...routes);
     },
     add: [Home, Products],
   }

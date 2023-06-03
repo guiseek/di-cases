@@ -1,30 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import { Home, Products } from '../app.providers';
+import { RoutePath } from '../types';
 
-export function RouterImpl(
-  HomePage: typeof Home,
-  ProductsPage: typeof Products
-) {
+export function RouterImpl(...routes: RoutePath[]) {
   return () => (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <div>
-            <h1>Home</h1>
-            <HomePage />
-          </div>
-        }
-      />
-      <Route
-        path="/products"
-        element={
-          <div>
-            <h1>Products</h1>
-            <ProductsPage />
-          </div>
-        }
-      />
+      {routes.map(([path, Element], key) => {
+        return <Route key={key} path={path} element={<Element />} />;
+      })}
     </Routes>
   );
 }
