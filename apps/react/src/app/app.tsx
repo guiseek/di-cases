@@ -1,15 +1,11 @@
 import { inject } from '@sqnl/di';
-import { Home } from './ports';
+import { Router } from './app.providers';
 import './app.scss';
 
 function App() {
-  const HomePage = inject(Home);
+  const RouterPage = inject(Router);
 
-  return (
-    <div>
-      <HomePage />
-    </div>
-  );
+  return <RouterPage />;
 }
 
 export default App;

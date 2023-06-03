@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@di-cases/shared/data-access": ["libs/shared/data-access/src/index.ts"],
       "@sqnl/di": ["libs/shared/di/src/index.ts"]
     }
   },
