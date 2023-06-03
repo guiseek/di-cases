@@ -1,6 +1,7 @@
 import { Http } from '@di-cases/shared/data-access';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { path } from '../utilities';
 
 export interface ProductResponse {
   products: Product[];
@@ -37,7 +38,7 @@ export function ProductsImpl(http: Http) {
       <div>
         <h1>Products</h1>
         This is the generated root route.{' '}
-        <Link to="/">Click here for Home.</Link>
+        <Link to={path()}>Click here for Home.</Link>
         <ul>
           {products.map((product) => {
             return <li key={product.id}>{product.description}</li>;

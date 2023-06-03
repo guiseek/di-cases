@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/react"
+        "outputPath": "dist/apps/di-cases"
       },
       "configurations": {
         "development": {
@@ -17,7 +17,10 @@
         },
         "production": {
           "mode": "production",
-          "base": "/di-cases/"
+          "base": "/di-cases/",
+          "fileReplacements": [
+            { "replace": "apps/react/src/envs/env.ts", "with": "apps/react/src/envs/env.prod.ts" }
+          ]
         }
       }
     },

@@ -4,6 +4,7 @@ import { RouterImpl } from './pages/router.impl';
 import { HomeImpl } from './pages/home.impl';
 import { register } from '@sqnl/di';
 import { RoutePath } from './types';
+import { path } from './utilities';
 
 export function Home() {
   return <></>;
@@ -23,13 +24,13 @@ register(
   {
     for: Home,
     use: () => {
-      return ['/', HomeImpl()];
+      return [path(), HomeImpl()];
     },
   },
   {
     for: Products,
     use: (http: Http) => {
-      return ['/products', ProductsImpl(http)];
+      return [path('products'), ProductsImpl(http)];
     },
     add: [Http],
   },
